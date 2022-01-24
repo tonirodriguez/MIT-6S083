@@ -7,14 +7,29 @@ using InteractiveUtils
 # ╔═╡ badbce94-7d4f-11ec-0114-278f00596fc3
 using DataFrames, DataFramesMeta, CSV, Plots, Dates, RollingFunctions, Interact
 
+# ╔═╡ 685345c0-1c33-444a-baee-207ea66b7330
+md"""
+# Europe Comparation for Countries
+"""
+
+# ╔═╡ 5f0d5b4e-0195-40d6-b7f5-f03829f1d6a9
+md"""
+## Get the Data
+"""
+
 # ╔═╡ c68d2d3c-8d1c-4065-9b6e-b39fd9b30a56
 url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 
 # ╔═╡ 96dbdedc-6ed2-485e-ac35-eb5dbc7c6e20
-df = CSV.read(download(url), DataFrame)
+df = CSV.read(download(url), DataFrame);
 
 # ╔═╡ 3751e4b6-ec5f-46a3-9b23-74ac9cf55579
 rename!(df, 1 => "province", 2 => "country")
+
+# ╔═╡ 88b89f89-e1e5-4f09-9047-71da47c9bab3
+md"""
+## Get the data for Countries
+"""
 
 # ╔═╡ 33a274c7-564d-4c47-b526-d798bacf2b70
 countries = collect(df[:, 2])
@@ -47,6 +62,11 @@ France_data = get_data_from_country("France");
 # ╔═╡ 49e947ab-4cd0-4525-94be-1fce1ce975cc
 UK_data = get_data_from_country("United Kingdom");
 
+# ╔═╡ 0e005678-f6af-443b-8339-9112e052e80a
+md"""
+## Get the Dates
+"""
+
 # ╔═╡ 71fd4882-68ba-4266-a930-b8b4184b9ac8
 date_strings = String.(names(df))[5:end]
 
@@ -55,6 +75,11 @@ format = Dates.DateFormat("m/d/Y")
 
 # ╔═╡ 788b661a-ac70-40a1-bb8b-7e12031d8007
 dates = parse.(Date, date_strings, format) .+ Year(2000)
+
+# ╔═╡ 06b51ea9-032d-434c-9ee3-45a8948384be
+md"""
+## Plot the data
+"""
 
 # ╔═╡ 1400e84e-753d-425e-843a-59636f62d037
 begin
@@ -1115,10 +1140,13 @@ version = "0.9.1+5"
 """
 
 # ╔═╡ Cell order:
+# ╟─685345c0-1c33-444a-baee-207ea66b7330
 # ╠═badbce94-7d4f-11ec-0114-278f00596fc3
+# ╟─5f0d5b4e-0195-40d6-b7f5-f03829f1d6a9
 # ╠═c68d2d3c-8d1c-4065-9b6e-b39fd9b30a56
 # ╠═96dbdedc-6ed2-485e-ac35-eb5dbc7c6e20
 # ╠═3751e4b6-ec5f-46a3-9b23-74ac9cf55579
+# ╟─88b89f89-e1e5-4f09-9047-71da47c9bab3
 # ╠═33a274c7-564d-4c47-b526-d798bacf2b70
 # ╠═2c93c7a7-bbc2-4b2f-8c16-160a5747092c
 # ╠═fdc065d9-391b-4a27-a7ec-9739a1534fa8
@@ -1127,9 +1155,11 @@ version = "0.9.1+5"
 # ╠═6368f1bd-d199-4e6d-b812-ccb4c892fb9c
 # ╠═3361b713-4f9c-472a-9e0b-9af67e021b7d
 # ╠═49e947ab-4cd0-4525-94be-1fce1ce975cc
+# ╟─0e005678-f6af-443b-8339-9112e052e80a
 # ╠═71fd4882-68ba-4266-a930-b8b4184b9ac8
 # ╠═b215adc6-e327-468b-846b-463cad04963c
 # ╠═788b661a-ac70-40a1-bb8b-7e12031d8007
+# ╟─06b51ea9-032d-434c-9ee3-45a8948384be
 # ╠═1400e84e-753d-425e-843a-59636f62d037
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
